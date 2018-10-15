@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     currentDate() {
-      return new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+      return new Date().toLocaleDateString();
     },
   },
   methods: {
