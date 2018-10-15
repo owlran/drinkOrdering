@@ -1,11 +1,14 @@
 <template lang='pug'>
   .order
     .order__name
-      p {{ order.name }}
+      span name:
+      span {{ order.name }}
     .order__price
-      p {{ order.price }}
+      span price:
+      span {{ order.price }}
     .order__notes
-      p {{ order.notes }}
+      span notes:
+      span {{ order.notes }}
     .order__button.order__button--delete
       button(@click="deleteHandler") delete
 </template>
