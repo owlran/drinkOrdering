@@ -2,10 +2,12 @@
   #app
     h1 {{ currentDate }}
     OrderList(:orders="orders" @deleteOrder="deleteOrderByIndex")
+    AddOrder(@submitOrder="submitOrder")
 </template>
 
 <script>
 import OrderList from '@/components/OrderList.vue';
+import AddOrder from '@/components/AddOrder.vue';
 
 export default {
   name: 'app',
@@ -25,6 +27,7 @@ export default {
   },
   components: {
     OrderList,
+    AddOrder,
   },
   computed: {
     currentDate() {
@@ -34,6 +37,9 @@ export default {
   methods: {
     deleteOrderByIndex(index) {
       this.orders.splice(index, 1);
+    },
+    submitOrder(order) {
+      this.orders.push(order);
     },
   },
 };
