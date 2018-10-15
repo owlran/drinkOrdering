@@ -1,7 +1,7 @@
 <template lang='pug'>
 .orderListContainer
-  .orderList(v-for="order in orders")
-    Order(:order="order")
+  .orderList(v-for="(order, index) in orders")
+    Order(:order="order" :index="index" @deleteOrder="deleteOrder")
 </template>
 
 <script>
@@ -14,6 +14,11 @@ export default {
   },
   components: {
     Order,
+  },
+  methods: {
+    deleteOrder(index) {
+      this.$emit('deleteOrder', index);
+    },
   },
 };
 </script>

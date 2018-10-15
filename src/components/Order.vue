@@ -6,6 +6,8 @@
       p {{ order.price }}
     .order__notes
       p {{ order.notes }}
+    .order__button.order__button--delete
+      button(@click="deleteHandler") delete
 </template>
 
 <script>
@@ -13,6 +15,12 @@ export default {
   name: 'Order',
   props: {
     order: Object,
+    index: Number,
+  },
+  methods: {
+    deleteHandler() {
+      this.$emit('deleteOrder', this.index);
+    },
   },
 };
 </script>
