@@ -1,17 +1,30 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang='pug'>
+  #app
+    h1 {{ currentDate }}
+    OrderList(:orders="orders")
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import OrderList from '@/components/OrderList.vue';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      orders: [{
+        name: '四季春',
+        price: 50,
+        notes: '123444',
+      }],
+    };
+  },
   components: {
-    HelloWorld,
+    OrderList,
+  },
+  computed: {
+    currentDate() {
+      return new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    },
   },
 };
 </script>
