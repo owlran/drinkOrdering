@@ -1,18 +1,41 @@
 <template lang='pug'>
   #app
-    Header(:totalAmount="totalAmount")
+    Header(:totalAmount="totalAmount" @addDrink="isModalVisible = true")
     .container
-      OrderList(:orders="orders" @deleteOrder="deleteOrderByIndex")
+      OrderList(:orders="orders"
+        @editOrder="showEditModal"
+        @deleteOrder="showDeleteModal")
+    AddOrderModal(v-show="isModalVisible"
+      @close="isModalVisible=false"
+      @confirm="confirm"
+      :isModalVisible="isModalVisible")
+    DeleteOrderModal(v-show="isDeletionModalVisible"
+      @close="isDeletionModalVisible = false"
+      @confirm="deleteOrderByIndex"
+      :isModalVisible="isDeletionModalVisible")
+    EditOrderModal(v-show="isEditModalVisible"
+      :order="focusedOrder"
+      @close="isEditModalVisible = false"
+      @confirm="updateOrderByIndex"
+      :isModalVisible="isEditModalVisible"
+    )
 </template>
 
 <script>
 import OrderList from '@/components/OrderList.vue';
 import Header from '@/components/Header.vue';
+import AddOrderModal from '@/components/AddOrderModal.vue';
+import DeleteOrderModal from '@/components/DeleteOrderModal.vue';
+import EditOrderModal from '@/components/EditOrderModal.vue';
 
 export default {
   name: 'app',
   data() {
     return {
+      isModalVisible: false,
+      isDeletionModalVisible: false,
+      isEditModalVisible: false,
+      currentIndex: -1,
       orders: [{
         drink: '四季春',
         price: 50,
@@ -20,6 +43,7 @@ export default {
         sugar: '無糖',
         ice: '去冰',
         name: '王大明',
+        id: 1,
       },
       {
         drink: '波霸奶茶',
@@ -28,12 +52,16 @@ export default {
         sugar: '全糖',
         ice: '半冰',
         name: 'eric',
+        id: 2,
       }],
     };
   },
   components: {
     OrderList,
     Header,
+    AddOrderModal,
+    DeleteOrderModal,
+    EditOrderModal,
   },
   computed: {
     totalAmount() {
@@ -42,10 +70,29 @@ export default {
         return total;
       }, 0);
     },
+    focusedOrder() {
+      return this.orders[this.currentIndex] || {};
+    },
   },
   methods: {
-    deleteOrderByIndex(index) {
-      this.orders.splice(index, 1);
+    showEditModal(index) {
+      this.currentIndex = index;
+      this.isEditModalVisible = true;
+    },
+    showDeleteModal(index) {
+      this.currentIndex = index;
+      this.isDeletionModalVisible = true;
+    },
+    confirm(order) {
+      this.orders.push(order);
+    },
+    deleteOrderByIndex() {
+      this.orders.splice(this.currentIndex, 1);
+      this.currentIndex = -1;
+    },
+    updateOrderByIndex(order) {
+      this.orders[this.currentIndex] = order;
+      this.currentIndex = -1;
     },
     submitOrder(order) {
       this.orders.push(order);

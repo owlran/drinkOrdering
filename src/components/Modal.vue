@@ -82,7 +82,6 @@ export default {
     padding: 30px 30px 0 30px;
   }
   &__footer {
-    border-top: 1px solid #eee;
     justify-content: flex-end;
     padding: 20px 30px 30px 0;
   }

@@ -41,6 +41,7 @@ export default {
       this.$emit('deleteOrder', this.index);
     },
     editHandler() {
+      this.$emit('editOrder', this.index);
     },
     editingHandler() {
     },
