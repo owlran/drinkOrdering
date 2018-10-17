@@ -91,7 +91,7 @@ export default {
       this.currentIndex = -1;
     },
     updateOrderByIndex(order) {
-      this.orders[this.currentIndex] = order;
+      this.orders.splice(this.currentIndex, 1, order);
       this.currentIndex = -1;
     },
     submitOrder(order) {
