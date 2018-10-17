@@ -7,16 +7,22 @@
       .header__amount
         span 總金額 {{ totalAmount }}
       .header__button(@click="$emit('addDrink')")
+        cafeIcon.header__icon
         span 訂飲料
 </template>
 
 <script>
+import cafeIcon from 'vue-ionicons/dist/md-cafe.vue';
+
 export default {
   name: 'Header',
   props: {
     totalAmount: {
       type: Number,
     },
+  },
+  components: {
+    cafeIcon,
   },
 };
 </script>
@@ -30,10 +36,11 @@ $title-text-font-size: 30px;
   position: relative;
   padding-top: 35px;
   padding-bottom: 40px;
+
   &__title {
     display: inline-flex;
     align-items: center;
-    margin-left: 270px;
+
     span {
     color: $title-text-color;
     font-size: $title-text-font-size;
@@ -42,8 +49,8 @@ $title-text-font-size: 30px;
   }
   &__right {
     position: absolute;
-    top: 25%;
-    right: 0;
+    top: 3em;
+    right: 10px;
   }
   &__amount {
     display: inline-block;
@@ -54,15 +61,19 @@ $title-text-font-size: 30px;
     }
   }
   &__button {
-    display: inline-block;
+    display: inline-flex;
     background-color: #fff;
-    padding: 13px 36px 13px 62px;
     border-radius: 3px;
     background-color: #00c7e6;
     color: white;
+    padding: 13px 36px 13px 37px;
     span {
       font-size: 14px;
     }
+  }
+  &__icon {
+    fill: #fff;
+    margin-right: 10px;
   }
 }
 </style>
