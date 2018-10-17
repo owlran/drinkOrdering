@@ -1,40 +1,36 @@
 <template lang='pug'>
   .order
-    .order__inputRow(v-if="isEditing===false")
-      .order__name
-        span name:
-        span {{ order.name }}
-      .order__price
-        span price:
-        span {{ order.price }}
-      .order__notes
-        span notes:
-        span {{ order.notes }}
-    .order__inputRow.order__inputRow--editing(v-else)
-      .order__name
-        span name:
-        input(v-model="order.name")
-      .order__price
-        span price:
-        input(v-model="order.price")
-      .order__notes
-        span notes:
-        input(v-model="order.notes")
-    .order__button.order__button--delete
-      button(@click="deleteHandler") delete
-    .order__button.order__button--edit(v-if="isEditing===false")
-      button(@click="editHandler") edit
-    .order__button.order__button--editing(v-else)
-      button(@click="editingHandler") finish edit
+    .order__drink
+      span {{ order.drink }}
+    .order__price
+      span {{ order.price }}
+    .order__tag.order__tag--sugar
+      span {{ order.sugar }}
+    .order__tag.order__tag--ice
+      span {{ order.ice }}
+    .order__name
+      span {{ order.name }}
+    .order__notes
+      span {{ order.notes }}
+    .order__icon(@click="editHandler")
+      editIcon(w="15px" h="15px")
+    .order__icon(@click="deleteHandler")
+      trashIcon(w="15px" h="15px")
 </template>
 
 <script>
+import editIcon from 'vue-ionicons/dist/md-create.vue';
+import trashIcon from 'vue-ionicons/dist/md-trash.vue';
+
 export default {
   name: 'Order',
   data() {
     return {
-      isEditing: false,
     };
+  },
+  components: {
+    editIcon,
+    trashIcon,
   },
   props: {
     order: Object,
@@ -45,18 +41,79 @@ export default {
       this.$emit('deleteOrder', this.index);
     },
     editHandler() {
-      this.isEditing = true;
     },
     editingHandler() {
-      this.isEditing = false;
     },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .order {
-  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 35px;
+
+   &__drink {
+     width: 160px;
+     span {
+       font-size: 20px;
+       color: #000;
+     }
+   }
+   &__price {
+     width: 48px;
+     span {
+       font-size: 20px;
+       color: #ff5230;
+     }
+   }
+   &__tag {
+    height: 30px;
+    padding: 0 16px;
+    border-radius: 3px;
+    margin-right: 20px;
+    &:nth-of-type(odd) {
+      margin-right: 10px;
+    }
+     span {
+      font-size: 14px;
+      color: #fff;
+      vertical-align: middle;
+     }
+     &--ice {
+       background-color:#ffab00;
+     }
+     &--sugar {
+       background-color:#00a3bf;
+     }
+   }
+   &__name {
+     width: 112px;
+     margin-right: 20px;
+     span {
+      color: #888;
+      font-size: 14px;
+      vertical-align: middle;
+     }
+   }
+   &__notes {
+     width: 200px;
+     margin-right: 68px;
+     span {
+       font-size: 14px;
+       color: #888;
+     }
+   }
+   &__icon {
+     fill: #d3d3d3;
+     &:nth-of-type(odd) {
+       margin-right: 10px;
+     }
+     &:hover {
+       fill: rgb(108, 105, 105);
+     }
+   }
 }
 </style>
