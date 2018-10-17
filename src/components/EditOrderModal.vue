@@ -15,6 +15,7 @@
           input.addOrderModal__input(type="text" placeholder="請輸入你的名字" v-model="newOrder.name")
           input.addOrderModal__input(type="text" placeholder="今天想喝什麼" v-model="newOrder.drink")
           input.addOrderModal__input(type="text" placeholder="花多少錢" v-model.number="newOrder.price")
+          span.addOrderModal__alert(v-show="showAlert") 請輸入數字
         .addOrderModal__wrapper
           .addOrderModal__radioButtons
             .addOrderModal__radioButton(:class="classSugarObject('正常')"
@@ -35,7 +36,8 @@
             .addOrderModal__radioButton(:class="classIceObject('去冰')"
               @click="newOrder.ice='去冰'") 去冰
         .addOrderModal__wrapper
-          input.addOrderModal__notes(type="text" placeholder="notes" v-model="newOrder.notes")
+          input.addOrderModal__notes(type="text"
+            placeholder="notes" maxlength="20" v-model="newOrder.notes")
 
 </template>
 <script>
@@ -53,6 +55,7 @@ export default {
         ice: '正常',
         notes: '',
       },
+      showAlert: false,
     };
   },
   props: {
@@ -69,9 +72,17 @@ export default {
     },
   },
   methods: {
+    checkPriceIsNumber() {
+      return typeof this.newOrder.price === 'number';
+    },
     confirm() {
-      this.$emit('confirm', this.newOrder);
-      this.close();
+      if (this.checkPriceIsNumber()) {
+        this.showAlert = false;
+        this.$emit('confirm', this.newOrder);
+        this.close();
+      } else {
+        this.showAlert = true;
+      }
     },
     close() {
       this.$emit('close');
@@ -171,6 +182,11 @@ export default {
     padding-left: 20px;
     padding-bottom: 13px;
     border-radius: 3px;
+  }
+  &__alert {
+    color: red;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 </style>
