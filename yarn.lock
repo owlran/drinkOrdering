@@ -8708,6 +8708,10 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.1.tgz#b2d3d95402a811602380783ea4f566eb875569a2"
 
+vue-ionicons@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/vue-ionicons/-/vue-ionicons-2.2.1.tgz#2837b1af7bce53154e1e951cc677fec1e9dbbc47"
+
 vue-jest@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/vue-jest/-/vue-jest-2.6.0.tgz#23dc99a4dce0bb59fea3946e1317b234968cf12a"
