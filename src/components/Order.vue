@@ -3,7 +3,7 @@
     .order__drink
       span {{ order.drink }}
     .order__price
-      span {{ order.price }}
+      span {{ order.price | currency }}
     .order__tag.order__tag--sugar
       span {{ order.sugar }}
     .order__tag.order__tag--ice
@@ -64,6 +64,7 @@ export default {
    }
    &__price {
      width: 48px;
+     margin-right: 30px;
      span {
        font-size: 20px;
        color: #ff5230;

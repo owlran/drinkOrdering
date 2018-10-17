@@ -5,7 +5,7 @@
       span 來喝飲料囉！
     .header__right
       .header__amount
-        span 總金額 {{ totalAmount }}
+        span 總金額 {{ totalAmount | currency }}
       .header__button(@click="$emit('addDrink')")
         cafeIcon.header__icon
         span 訂飲料
