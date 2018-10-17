@@ -1,6 +1,6 @@
 <template lang='pug'>
   #app
-    h1 {{ currentDate }}
+    Header(:totalAmount="totalAmount")
     OrderList(:orders="orders" @deleteOrder="deleteOrderByIndex")
     AddOrder(@submitOrder="submitOrder")
 </template>
@@ -8,6 +8,7 @@
 <script>
 import OrderList from '@/components/OrderList.vue';
 import AddOrder from '@/components/AddOrder.vue';
+import Header from '@/components/Header.vue';
 
 export default {
   name: 'app',
@@ -28,10 +29,14 @@ export default {
   components: {
     OrderList,
     AddOrder,
+    Header,
   },
   computed: {
-    currentDate() {
-      return new Date().toLocaleDateString();
+    totalAmount() {
+      return this.orders.reduce((total, current) => {
+        total += current.price; // eslint-disable-line no-param-reassign
+        return total;
+      }, 0);
     },
   },
   methods: {
@@ -46,12 +51,20 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  background-color: #3c3e50;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+* {
+  box-sizing: border-box;
 }
 </style>
