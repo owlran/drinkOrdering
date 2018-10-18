@@ -27,6 +27,7 @@ import Header from '@/components/Header.vue';
 import AddOrderModal from '@/components/AddOrderModal.vue';
 import DeleteOrderModal from '@/components/DeleteOrderModal.vue';
 import EditOrderModal from '@/components/EditOrderModal.vue';
+import orderStorage from '@/utils/orderStorage';
 
 export default {
   name: 'app',
@@ -97,6 +98,14 @@ export default {
     submitOrder(order) {
       this.orders.push(order);
     },
+  },
+  watch: {
+    orders() {
+      orderStorage.save(this.orders);
+    },
+  },
+  mounted() {
+    this.orders = orderStorage.fetch();
   },
 };
 </script>
