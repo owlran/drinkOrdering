@@ -1,14 +1,19 @@
-<template lang='pug'>
-  .header
-    .header__title
-      img(src="../assets/drink.png")
-      span 來喝飲料囉！
-    .header__right
-      .header__amount
-        span 總金額 {{ totalAmount | currency }}
-      .header__button(@click="$emit('addDrink')")
-        cafeIcon.header__icon
-        span 訂飲料
+<template>
+  <div class="header">
+    <div class="header__title">
+      <img src="../assets/drink.png" alt="">
+      <span>來喝飲料囉 !</span>
+    </div>
+    <div class="header__right">
+      <div class="header__amount">
+        <span>總金額 {{ totalAmount | currency }}</span>
+      </div>
+      <div class="header__button" @click="$emit('addDrink')">
+        <cafe-icon class="header__icon"/>
+        <span>訂飲料</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

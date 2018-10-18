@@ -1,22 +1,33 @@
-<template lang='pug'>
-  transition(name="modal-fade")
-    .modal(@click="close" v-show="isModalVisible")
-      .modal__wrapper(@click.stop="stop")
-        .modal__header
-          slot(name="header")
-            h2 the header of modal
-          button.modal__btn(type="button" @click="close") x
-        .modal__content
-          slot(name="content")
-            span the content of modal
-        .modal__footer
-          slot(name="footer")
-            button.modal__btn.modal__btn--cancel(type="button" @click="close")
-              closeIcon.modal__icon(w="15" h="15")
-              span 取消返回
-            button.modal__btn.modal__btn--confirm(type="button" @click="confirm")
-              checkIcon.modal__icon(w="15" h="15")
-              span 確認送出
+<template>
+  <transition name="modal-fade">
+    <div class="modal" @click="close" v-show="isModalVisible">
+      <div class="modal__wrapper" @click.stop="stop">
+        <div class="modal__header">
+          <slot name="header">
+            <h2>the header of modal</h2>
+          </slot>
+          <button class="modal__btn" type="button" @click="close"> x</button>
+        </div>
+        <div class="modal__content">
+          <slot name="content">
+            <span>the content of modal</span>
+          </slot>
+        </div>
+        <div class="modal__footer">
+          <slot name="footer">
+            <button class="modal__btn modal__btn--cancel" type="button" @click="close">
+              <close-icon w="15" h="15" />
+              <span>取消返回</span>
+            </button>
+            <button class="modal__btn modal__btn--confirm" type="button" @click="confirm">
+              <check-icon w="15" h="15" />
+              <span>確認送出</span>
+            </button>
+          </slot>
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -35,6 +46,7 @@ export default {
     },
   },
   methods: {
+    stop() {},
     confirm() {
       this.$emit('confirm');
     },

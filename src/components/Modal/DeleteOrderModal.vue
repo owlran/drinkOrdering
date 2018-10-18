@@ -1,13 +1,20 @@
-<template lang='pug'>
-  Modal.deleteOrderModal(:isModalVisible="isModalVisible"
-    @close="close" @confirm="confirm")
-    template(slot="header")
-      .deleteOrderModal__header
-        span 不喝了嗎
-    template(slot="content")
-      .deleteOrderModal__content
-        .deleteOrderModal__wrapper
-          span.deleteOrderModal__label 確定取消這筆訂單嗎？
+<template>
+  <modal class="deleteOrderModal"
+    :isModalVisible="isModalVisible"
+    @close="close" @confirm="confirm">
+    <template slot="header">
+      <div class="deleteOrderModal__header">
+        <span>不喝了嗎</span>
+      </div>
+    </template>
+    <template slot="content">
+      <div class="deleteOrderModal__content">
+        <div class="deleteOrderModal__wrapper">
+          <span class="deleteOrderModal__label">確定取消這筆訂單嗎？</span>
+        </div>
+      </div>
+    </template>
+  </modal>
 </template>
 <script>
 import Modal from '@/components/Modal/Modal';

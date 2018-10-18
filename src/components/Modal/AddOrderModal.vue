@@ -1,44 +1,62 @@
-<template lang='pug'>
-  Modal.addOrderModal(@confirm="confirm"
+<template>
+  <modal class="addOrderModal"
+    @confirm="confirm"
     @close="close"
-    :isModalVisible="isModalVisible")
-    template(slot="header")
-      .addOrderModal__header
-        span 喝什麼?
-    template(slot="content")
-      .addOrderModal__content
-        .addOrderModal__wrapper
-          span.addOrderModal__label 姓名
-          span.addOrderModal__label 飲品名稱
-          span.addOrderModal__label 飲品價格
-        .addOrderModal__wrapper
-          input.addOrderModal__input(type="text" placeholder="請輸入你的名字" v-model="newOrder.name")
-          input.addOrderModal__input(type="text" placeholder="今天想喝什麼" v-model="newOrder.drink")
-          input.addOrderModal__input(type="text" placeholder="花多少錢" v-model.number="newOrder.price")
-          span.addOrderModal__alert(v-show="showAlert") 請輸入數字
-        .addOrderModal__wrapper
-          .addOrderModal__radioButtons
-            .addOrderModal__radioButton(:class="classSugarObject('正常')"
-              @click="newOrder.sugar='正常'") 正常
-            .addOrderModal__radioButton(:class="classSugarObject('半糖')"
-              @click="newOrder.sugar='半糖'") 半糖
-            .addOrderModal__radioButton(:class="classSugarObject('少糖')"
-              @click="newOrder.sugar='少糖'") 少糖
-            .addOrderModal__radioButton(:class="classSugarObject('無糖')"
-              @click="newOrder.sugar='無糖'") 無糖
-          .addOrderModal__radioButtons
-            .addOrderModal__radioButton(:class="classIceObject('正常')"
-              @click="newOrder.ice='正常'") 正常
-            .addOrderModal__radioButton(:class="classIceObject('半冰')"
-              @click="newOrder.ice='半冰'") 半冰
-            .addOrderModal__radioButton(:class="classIceObject('少冰')"
-              @click="newOrder.ice='少冰'") 少冰
-            .addOrderModal__radioButton(:class="classIceObject('去冰')"
-              @click="newOrder.ice='去冰'") 去冰
-        .addOrderModal__wrapper
-          input.addOrderModal__notes(type="text"
-            placeholder="notes" maxlength="20" v-model="newOrder.notes")
-
+    :isModalVisible="isModalVisible">
+    <template slot="header">
+      <div class="addOrderModal__header">
+        <span>喝什麼</span>
+      </div>
+    </template>
+    <template slot="content">
+        <div class="addOrderModal__content">
+          <div class="addOrderModal__wrapper">
+            <span class="addOrderModal__label">姓名</span>
+            <span class="addOrderModal__label">飲品名稱</span>
+            <span class="addOrderModal__label">飲品價格</span>
+          </div>
+          <div class="addOrderModal__wrapper">
+            <input class="addOrderModal__input" type="text"
+              placeholder="請輸入你的名字" v-model="newOrder.name">
+            <input class="addOrderModal__input" type="text"
+              placeholder="今天想喝什麼" v-model="newOrder.drink">
+            <input class="addOrderModal__input" type="text"
+              placeholder="花多少錢" v-model.number="newOrder.price">
+            <span class="addOrderModal__alert" v-show="showAlert">請輸入數字</span>
+          </div>
+          <div class="addOrderModal__wrapper">
+            <div class="addOrderModal__radioButtons">
+              <div class="addOrderModal__radioButton"
+                :class="classSugarObject('正常')"
+                @click="newOrder.sugar='正常'">正常</div>
+              <div class="addOrderModal__radioButton"
+                :class="classSugarObject('半糖')"
+                @click="newOrder.sugar='半糖'">半糖</div>
+              <div class="addOrderModal__radioButton"
+                :class="classSugarObject('少糖')"
+                @click="newOrder.sugar='少糖'">少糖</div>
+              <div class="addOrderModal__radioButton"
+                :class="classSugarObject('無糖')"
+                @click="newOrder.sugar='無糖'">無糖</div>
+            </div>
+            <div class="addOrderModal__radioButtons">
+              <div class="addOrderModal__radioButton"
+                :class="classIceObject('正常')" @click="newOrder.ice='正常'">正常</div>
+              <div class="addOrderModal__radioButton"
+                :class="classIceObject('半冰')" @click="newOrder.ice='半冰'">半冰</div>
+              <div class="addOrderModal__radioButton"
+                :class="classIceObject('少冰')" @click="newOrder.ice='少冰'">少冰</div>
+              <div class="addOrderModal__radioButton"
+                :class="classIceObject('去冰')" @click="newOrder.ice='去冰'">去冰</div>
+            </div>
+          </div>
+          <div class="addOrderModal__wrapper">
+            <input class="addOrderModal__notes" type="text"
+              placeholder="notes" maxlength="20" v-model="newOrder.notes">
+          </div>
+        </div>
+    </template>
+  </modal>
 </template>
 <script>
 import Modal from '@/components/Modal/Modal';
@@ -135,27 +153,18 @@ export default {
   &__input {
     border-radius: 3px;
     outline: none;
+    padding-top: 13px;
+    padding-bottom: 13px;
     &::placeholder {
       color: #d3d3d3;
     }
-    &:nth-child(1) {
+    &:nth-child(1), &:nth-child(2) {
       margin-right: 10px;
       width: 200px;
-      padding-top: 13px;
-      padding-bottom: 13px;
-      padding-left: 15px;
-    }
-    &:nth-child(2) {
-      margin-right: 10px;
-      width: 200px;
-      padding-top: 13px;
-      padding-bottom: 13px;
       padding-left: 15px;
     }
     &:nth-child(3) {
-      width: 100px;
-      padding-top: 13px;
-      padding-bottom: 13px;
+      width: 80px;
       padding-left: 15px;
     }
   }
@@ -170,7 +179,7 @@ export default {
     font-size: 14px;
     color: #888;
     border: 1px solid #dedede;
-    width: 64px;
+    width: 62px;
     height: 40px;
     padding-top: 10px;
     padding-left: 18px;

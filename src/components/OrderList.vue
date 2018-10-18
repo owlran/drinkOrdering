@@ -1,14 +1,16 @@
-<template lang='pug'>
-.orderList
-  .orderList__card.orderList__card--empty(v-if="orders.length===0")
-    img(src="../assets/drink-none.png")
-    span 目前沒有訂單
-  .orderList__card(v-else v-for="(order, index) in orders")
-    Order(:order="order" :index="index"
+<template>
+<div class="orderList">
+  <div class="orderList__card orderList__card--empty" v-if="orders.length===0">
+    <img src="../assets/drink-none.png" alt="">
+    <span>目前沒有訂單</span>
+  </div>
+  <div class="orderList__card" v-else v-for="(order, index) in orders" :key="index">
+    <order :order="order" :index="index"
       :key="index"
       @editOrder="editOrder"
-      @deleteOrder="deleteOrder")
-
+      @deleteOrder="deleteOrder"/>
+  </div>
+</div>
 </template>
 
 <script>

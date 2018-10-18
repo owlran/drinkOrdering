@@ -1,18 +1,20 @@
-<template lang='pug'>
-  #app
-    Header(:totalAmount="totalAmount" @addDrink="isAddModalVisible = true")
-    #app__container
-      OrderList(:orders="orders" @editOrder="showEditModal" @deleteOrder="showDeleteModal")
-    AddOrderModal(v-show="isAddModalVisible"
-      :isModalVisible="isAddModalVisible"
-      @close="isAddModalVisible = false" @confirm="confirmToAddNewOrder")
-    DeleteOrderModal(v-show="isDeletionModalVisible"
+<template>
+  <div class="app">
+    <Header :totalAmount="totalAmount" @addDrink="isAddModalVisible = true"></Header>
+    <div class="app__container">
+      <order-list :orders="orders"
+        @editOrder="showEditModal" @deleteOrder="showDeleteModal"></order-list>
+    <add-order-modal v-show="isAddModalVisible"
+      @close="isAddModalVisible = false" @confirm="confirmToAddNewOrder"></add-order-modal>
+    <delete-order-modal v-show="isDeletionModalVisible"
       :isModalVisible="isDeletionModalVisible"
-      @close="isDeletionModalVisible = false" @confirm="deleteOrderByIndex")
-    EditOrderModal(v-show="isEditModalVisible"
+      @close="isDeletionModalVisible = false" @confirm="deleteOrderByIndex"></delete-order-modal>
+    <edit-order-modal v-show="isEditModalVisible"
       :isModalVisible="isEditModalVisible"
       :order="focusedOrder"
-      @close="isEditModalVisible = false" @confirm="updateOrderByIndex")
+      @close="isEditModalVisible = false" @confirm="updateOrderByIndex"></edit-order-modal>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -99,7 +101,7 @@ body {
 * {
   box-sizing: border-box;
 }
-#app {
+.app {
   width: 900px;
   margin: 0 auto;
   background-color: #fff;

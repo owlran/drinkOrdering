@@ -1,21 +1,30 @@
-<template lang='pug'>
-  .order
-    .order__drink
-      span {{ order.drink }}
-    .order__price
-      span {{ order.price | currency }}
-    .order__tag.order__tag--sugar
-      span {{ order.sugar }}
-    .order__tag.order__tag--ice
-      span {{ order.ice }}
-    .order__name
-      span {{ order.name }}
-    .order__notes
-      span {{ order.notes }}
-    .order__icon.order__icon--edit(@click="editHandler")
-      editIcon(w="15px" h="15px")
-    .order__icon.order__icon--delete(@click="deleteHandler")
-      trashIcon(w="15px" h="15px")
+<template>
+  <div class="order">
+    <div class="order__drink">
+      <span>{{ order.drink }}</span>
+    </div>
+    <div class="order__price">
+      <span>{{ order.price | currency }}</span>
+    </div>
+    <div class="order__tag order__tag--sugar">
+      <span>{{ order.sugar }}</span>
+    </div>
+    <div class="order__tag order__tag--ice">
+      <span>{{ order.ice }} </span>
+    </div>
+    <div class="order__name">
+      <span>{{ order.name }}</span>
+    </div>
+    <div class="order__notes">
+      <span>{{ order.notes }}</span>
+    </div>
+    <div class="order__icon order__icon--edit" @click="editHandler">
+      <edit-icon w="15px" h="15px"/>
+    </div>
+    <div class="order__icon order__icon--delete" @click="deleteHandler">
+      <trash-icon w="15px" h="15px"/>
+    </div>
+  </div>
 </template>
 
 <script>
