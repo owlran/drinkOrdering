@@ -1,42 +1,45 @@
 <template lang='pug'>
-  Modal.addOrderModal(@confirm="confirm"
+  Modal.editOrderModal(@confirm="confirm"
     @close="close"
     :isModalVisible="isModalVisible")
     template(slot="header")
-      .addOrderModal__header
+      .editOrderModal__header
         span 改一改
     template(slot="content")
-      .addOrderModal__content
-        .addOrderModal__wrapper
-          span.addOrderModal__label 姓名
-          span.addOrderModal__label 飲品名稱
-          span.addOrderModal__label 飲品價格
-        .addOrderModal__wrapper
-          input.addOrderModal__input(type="text" placeholder="請輸入你的名字" v-model="newOrder.name")
-          input.addOrderModal__input(type="text" placeholder="今天想喝什麼" v-model="newOrder.drink")
-          input.addOrderModal__input(type="text" placeholder="花多少錢" v-model.number="newOrder.price")
-          span.addOrderModal__alert(v-show="showAlert") 請輸入數字
-        .addOrderModal__wrapper
-          .addOrderModal__radioButtons
-            .addOrderModal__radioButton(:class="classSugarObject('正常')"
+      .editOrderModal__content
+        .editOrderModal__wrapper
+          span.editOrderModal__label 姓名
+          span.editOrderModal__label 飲品名稱
+          span.editOrderModal__label 飲品價格
+        .editOrderModal__wrapper
+          input.editOrderModal__input(type="text"
+            placeholder="請輸入你的名字" v-model="newOrder.name")
+          input.editOrderModal__input(type="text"
+            placeholder="今天想喝什麼" v-model="newOrder.drink")
+          input.editOrderModal__input(type="text"
+            placeholder="花多少錢" v-model.number="newOrder.price")
+          span.editOrderModal__alert(v-show="showAlert") 請輸入數字
+        .editOrderModal__wrapper
+          .editOrderModal__radioButtons
+            .editOrderModal__radioButton(:class="classSugarObject('正常')"
               @click="newOrder.sugar='正常'") 正常
-            .addOrderModal__radioButton(:class="classSugarObject('半糖')"
+            .editOrderModal__radioButton(:class="classSugarObject('半糖')"
               @click="newOrder.sugar='半糖'") 半糖
-            .addOrderModal__radioButton(:class="classSugarObject('少糖')"
+            .editOrderModal__radioButton(:class="classSugarObject('少糖')"
               @click="newOrder.sugar='少糖'") 少糖
-            .addOrderModal__radioButton(:class="classSugarObject('無糖')"
+            .editOrderModal__radioButton(:class="classSugarObject('無糖')"
               @click="newOrder.sugar='無糖'") 無糖
-          .addOrderModal__radioButtons
-            .addOrderModal__radioButton(:class="classIceObject('正常')"
+          .editOrderModal__radioButtons
+            .editOrderModal__radioButton(:class="classIceObject('正常')"
               @click="newOrder.ice='正常'") 正常
-            .addOrderModal__radioButton(:class="classIceObject('半冰')"
+            .editOrderModal__radioButton(:class="classIceObject('半冰')"
               @click="newOrder.ice='半冰'") 半冰
-            .addOrderModal__radioButton(:class="classIceObject('少冰')"
+            .editOrderModal__radioButton(:class="classIceObject('少冰')"
               @click="newOrder.ice='少冰'") 少冰
-            .addOrderModal__radioButton(:class="classIceObject('去冰')"
+            .editOrderModal__radioButton(:class="classIceObject('去冰')"
               @click="newOrder.ice='去冰'") 去冰
-        .addOrderModal__wrapper
-          input.addOrderModal__notes(type="text"
+        .editOrderModal__wrapper
+          input.editOrderModal__notes(type="text"
             placeholder="notes" maxlength="20" v-model="newOrder.notes")
 
 </template>
@@ -90,10 +93,10 @@ export default {
   },
   computed: {
     classSugarObject() {
-      return option => ({ 'addOrderModal__radioButton--selected': this.newOrder.sugar === option });
+      return option => ({ 'editOrderModal__radioButton--selected': this.newOrder.sugar === option });
     },
     classIceObject() {
-      return option => ({ 'addOrderModal__radioButton--selected': this.newOrder.ice === option });
+      return option => ({ 'editOrderModal__radioButton--selected': this.newOrder.ice === option });
     },
   },
   components: {
@@ -103,7 +106,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.addOrderModal {
+.editOrderModal {
   &__header {
     display: flex;
     align-items: center;
