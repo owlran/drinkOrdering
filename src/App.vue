@@ -81,6 +81,9 @@ export default {
     submitOrder(order) {
       this.orders.push(order);
     },
+    assignDocumentTitle(title) {
+      document.title = title;
+    },
   },
   watch: {
     orders() {
@@ -89,6 +92,7 @@ export default {
   },
   mounted() {
     this.orders = orderStorage.fetch();
+    this.assignDocumentTitle('來喝飲料囉！');
   },
 };
 </script>
