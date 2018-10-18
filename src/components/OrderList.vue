@@ -3,7 +3,7 @@
   .orderList__card.orderList__card--empty(v-if="orders.length===0")
     img(src="../assets/drink-none.png")
     span 目前沒有訂單
-  .orderList__card(v-else v-for="(order, index) in filteredOrders")
+  .orderList__card(v-else v-for="(order, index) in orders")
     Order(:order="order" :index="index"
       :key="index"
       @editOrder="editOrder"
@@ -21,16 +21,6 @@ export default {
   },
   components: {
     Order,
-  },
-  computed: {
-    filteredOrders() {
-      return this.orders;
-    },
-  },
-  watch: {
-    filteredOrders() {
-      this.$forceUpdate();
-    },
   },
   methods: {
     editOrder(index) {

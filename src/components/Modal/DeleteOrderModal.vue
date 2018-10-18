@@ -1,64 +1,31 @@
 <template lang='pug'>
-  Modal.addOrderModal(@confirm="confirm"
-    @close="close"
-    :isModalVisible="isModalVisible")
+  Modal.deleteOrderModal(:isModalVisible="isModalVisible"
+    @close="close" @confirm="confirm")
     template(slot="header")
-      .addOrderModal__header
+      .deleteOrderModal__header
         span 不喝了嗎
     template(slot="content")
-      .addOrderModal__content
-        .addOrderModal__wrapper
-          span.addOrderModal__label 確定取消這筆訂單嗎？
+      .deleteOrderModal__content
+        .deleteOrderModal__wrapper
+          span.deleteOrderModal__label 確定取消這筆訂單嗎？
 </template>
 <script>
 import Modal from '@/components/Modal/Modal.vue';
 
 export default {
   name: 'deleteOrderModal',
-  data() {
-    return {
-      newOrder: {
-        drink: '',
-        price: 0,
-        notes: '',
-        sugar: '正常',
-        ice: '正常',
-        name: '',
-      },
-    };
-  },
   props: {
     isModalVisible: {
       type: Boolean,
     },
   },
   methods: {
-    resetOrder() {
-      this.newOrder = {
-        drink: '',
-        price: 0,
-        notes: '',
-        sugar: '正常',
-        ice: '正常',
-        name: '',
-      };
-    },
     confirm() {
-      const cloneOrder = Object.assign({}, this.newOrder);
-      this.resetOrder();
-      this.$emit('confirm', cloneOrder);
+      this.$emit('confirm');
       this.close();
     },
     close() {
       this.$emit('close');
-    },
-  },
-  computed: {
-    classSugarObject() {
-      return option => ({ 'addOrderModal__radioButton--selected': this.newOrder.sugar === option });
-    },
-    classIceObject() {
-      return option => ({ 'addOrderModal__radioButton--selected': this.newOrder.ice === option });
     },
   },
   components: {
@@ -68,7 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.addOrderModal {
+.deleteOrderModal {
   &__header {
     display: flex;
     align-items: center;

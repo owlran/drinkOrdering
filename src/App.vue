@@ -1,48 +1,43 @@
 <template lang='pug'>
   #app
-    Header(:totalAmount="totalAmount" @addDrink="isModalVisible = true")
-    .container
-      OrderList(:orders="orders"
-        @editOrder="showEditModal"
-        @deleteOrder="showDeleteModal")
-    AddOrderModal(v-show="isModalVisible"
-      @close="isModalVisible=false"
-      @confirm="confirm"
-      :isModalVisible="isModalVisible")
+    Header(:totalAmount="totalAmount" @addDrink="isAddModalVisible = true")
+    #app__container
+      OrderList(:orders="orders" @editOrder="showEditModal" @deleteOrder="showDeleteModal")
+    AddOrderModal(v-show="isAddModalVisible"
+      :isModalVisible="isAddModalVisible"
+      @close="isAddModalVisible = false" @confirm="confirmToAddNewOrder")
     DeleteOrderModal(v-show="isDeletionModalVisible"
-      @close="isDeletionModalVisible = false"
-      @confirm="deleteOrderByIndex"
-      :isModalVisible="isDeletionModalVisible")
+      :isModalVisible="isDeletionModalVisible"
+      @close="isDeletionModalVisible = false" @confirm="deleteOrderByIndex")
     EditOrderModal(v-show="isEditModalVisible"
-      :order="focusedOrder"
-      @close="isEditModalVisible = false"
-      @confirm="updateOrderByIndex"
       :isModalVisible="isEditModalVisible"
-    )
+      :order="focusedOrder"
+      @close="isEditModalVisible = false" @confirm="updateOrderByIndex")
 </template>
 
 <script>
-import OrderList from '@/components/OrderList.vue';
 import Header from '@/components/Header.vue';
+import OrderList from '@/components/OrderList.vue';
 import AddOrderModal from '@/components/Modal/AddOrderModal.vue';
 import DeleteOrderModal from '@/components/Modal/DeleteOrderModal.vue';
 import EditOrderModal from '@/components/Modal/EditOrderModal.vue';
+
 import orderStorage from '@/utils/orderStorage';
 
 export default {
   name: 'app',
   data() {
     return {
-      isModalVisible: false,
-      isDeletionModalVisible: false,
-      isEditModalVisible: false,
       currentIndex: -1,
       orders: [],
+      isAddModalVisible: false,
+      isDeletionModalVisible: false,
+      isEditModalVisible: false,
     };
   },
   components: {
-    OrderList,
     Header,
+    OrderList,
     AddOrderModal,
     DeleteOrderModal,
     EditOrderModal,
@@ -67,7 +62,7 @@ export default {
       this.currentIndex = index;
       this.isDeletionModalVisible = true;
     },
-    confirm(order) {
+    confirmToAddNewOrder(order) {
       this.orders.push(order);
     },
     deleteOrderByIndex() {
@@ -105,18 +100,14 @@ body {
   box-sizing: border-box;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   width: 900px;
   margin: 0 auto;
   background-color: #fff;
+  &__container {
+    background-color: rgba(191, 240, 248, 0.5);
+    border: 1px solid rgba(191, 240, 248, 0.5);
+    height: 100vh;
+  }
 }
 
-.container {
-  background-color: rgba(191, 240, 248, 0.5);
-  border: 1px solid rgba(191, 240, 248, 0.5);
-  height: 100vh;
-}
 </style>

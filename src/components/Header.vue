@@ -42,9 +42,9 @@ $title-text-font-size: 30px;
     align-items: center;
 
     span {
-    color: $title-text-color;
-    font-size: $title-text-font-size;
-    margin-left: 20px;
+      color: $title-text-color;
+      font-size: $title-text-font-size;
+      margin-left: 20px;
     }
   }
   &__right {
