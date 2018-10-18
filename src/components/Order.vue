@@ -115,6 +115,7 @@ export default {
      }
      &:hover {
        fill: rgb(108, 105, 105);
+       cursor: pointer;
      }
    }
 }

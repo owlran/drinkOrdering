@@ -70,6 +70,10 @@ $title-text-font-size: 30px;
     span {
       font-size: 14px;
     }
+    &:hover {
+      background-color: #00ddff;
+      cursor: pointer;
+    }
   }
   &__icon {
     fill: #fff;
