@@ -72,8 +72,12 @@ export default {
      }
    }
    &__tag {
-    height: 30px;
-    padding: 0 16px;
+    line-height: 30px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+
     border-radius: 3px;
     margin-right: 20px;
     &:nth-of-type(odd) {
