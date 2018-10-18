@@ -99,7 +99,6 @@ export default {
       if (this.checkPriceIsNumber()) {
         this.showAlert = false;
         const cloneOrder = Object.assign({}, this.newOrder);
-        this.resetOrder();
         this.$emit('confirm', cloneOrder);
         this.close();
       } else {
@@ -107,6 +106,7 @@ export default {
       }
     },
     close() {
+      this.resetOrder();
       this.$emit('close');
     },
   },
