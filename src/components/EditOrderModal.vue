@@ -90,10 +90,10 @@ export default {
   },
   computed: {
     classSugarObject() {
-      return option => ({ 'addOrderModal__radioButton--selected': this.order.sugar === option });
+      return option => ({ 'addOrderModal__radioButton--selected': this.newOrder.sugar === option });
     },
     classIceObject() {
-      return option => ({ 'addOrderModal__radioButton--selected': this.order.ice === option });
+      return option => ({ 'addOrderModal__radioButton--selected': this.newOrder.ice === option });
     },
   },
   components: {
