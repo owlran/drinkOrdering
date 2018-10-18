@@ -174,6 +174,7 @@ export default {
     height: 40px;
     padding-top: 10px;
     padding-left: 18px;
+    cursor: pointer;
     &--selected {
       color: #00c7e6;
       border-color: #00c7e6;
