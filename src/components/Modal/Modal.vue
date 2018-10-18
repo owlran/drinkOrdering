@@ -1,7 +1,7 @@
 <template lang='pug'>
   transition(name="modal-fade")
     .modal(@click="close" v-show="isModalVisible")
-      .modal__wrapper(@click.stop)
+      .modal__wrapper(@click.stop="stop")
         .modal__header
           slot(name="header")
             h2 the header of modal
@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import checkIcon from 'vue-ionicons/dist/md-checkmark.vue';
-import closeIcon from 'vue-ionicons/dist/md-close.vue';
+import checkIcon from 'vue-ionicons/dist/md-checkmark';
+import closeIcon from 'vue-ionicons/dist/md-close';
 
 export default {
   name: 'modal',

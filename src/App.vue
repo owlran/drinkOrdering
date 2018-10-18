@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
-import OrderList from '@/components/OrderList.vue';
-import AddOrderModal from '@/components/Modal/AddOrderModal.vue';
-import DeleteOrderModal from '@/components/Modal/DeleteOrderModal.vue';
-import EditOrderModal from '@/components/Modal/EditOrderModal.vue';
+import Header from '@/components/Header';
+import OrderList from '@/components/OrderList';
+import AddOrderModal from '@/components/Modal/AddOrderModal';
+import DeleteOrderModal from '@/components/Modal/DeleteOrderModal';
+import EditOrderModal from '@/components/Modal/EditOrderModal';
 
 import orderStorage from '@/utils/orderStorage';
 

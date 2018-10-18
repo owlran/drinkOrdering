@@ -10,7 +10,7 @@
           span.deleteOrderModal__label 確定取消這筆訂單嗎？
 </template>
 <script>
-import Modal from '@/components/Modal/Modal.vue';
+import Modal from '@/components/Modal/Modal';
 
 export default {
   name: 'deleteOrderModal',

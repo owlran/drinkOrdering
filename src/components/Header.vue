@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import cafeIcon from 'vue-ionicons/dist/md-cafe.vue';
+import cafeIcon from 'vue-ionicons/dist/md-cafe';
 
 export default {
   name: 'Header',

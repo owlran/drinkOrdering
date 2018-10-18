@@ -44,7 +44,7 @@
 
 </template>
 <script>
-import Modal from '@/components/Modal/Modal.vue';
+import Modal from '@/components/Modal/Modal';
 
 export default {
   name: 'editOrderModal',

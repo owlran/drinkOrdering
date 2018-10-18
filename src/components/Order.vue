@@ -12,15 +12,15 @@
       span {{ order.name }}
     .order__notes
       span {{ order.notes }}
-    .order__icon(@click="editHandler")
+    .order__icon.order__icon--edit(@click="editHandler")
       editIcon(w="15px" h="15px")
-    .order__icon(@click="deleteHandler")
+    .order__icon.order__icon--delete(@click="deleteHandler")
       trashIcon(w="15px" h="15px")
 </template>
 
 <script>
-import editIcon from 'vue-ionicons/dist/md-create.vue';
-import trashIcon from 'vue-ionicons/dist/md-trash.vue';
+import editIcon from 'vue-ionicons/dist/md-create';
+import trashIcon from 'vue-ionicons/dist/md-trash';
 
 export default {
   name: 'Order',

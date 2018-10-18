@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Order from '@/components/Order.vue';
+import Order from '@/components/Order';
 
 export default {
   name: 'OrderList',
