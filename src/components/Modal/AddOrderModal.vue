@@ -4,7 +4,7 @@
     :isModalVisible="isModalVisible")
     template(slot="header")
       .addOrderModal__header
-        span 改一改
+        span 喝什麼?
     template(slot="content")
       .addOrderModal__content
         .addOrderModal__wrapper
@@ -41,19 +41,19 @@
 
 </template>
 <script>
-import Modal from '@/components/Modal.vue';
+import Modal from '@/components/Modal/Modal.vue';
 
 export default {
   name: 'addOrderModal',
   data() {
     return {
       newOrder: {
-        name: '',
         drink: '',
-        price: '',
+        price: 0,
+        notes: '',
         sugar: '正常',
         ice: '正常',
-        notes: '',
+        name: '',
       },
       showAlert: false,
     };
@@ -62,23 +62,27 @@ export default {
     isModalVisible: {
       type: Boolean,
     },
-    order: {
-      type: Object,
-    },
-  },
-  watch: {
-    order() {
-      this.newOrder = Object.assign({}, this.order);
-    },
   },
   methods: {
+    resetOrder() {
+      this.newOrder = {
+        drink: '',
+        price: 0,
+        notes: '',
+        sugar: '正常',
+        ice: '正常',
+        name: '',
+      };
+    },
     checkPriceIsNumber() {
       return typeof this.newOrder.price === 'number';
     },
     confirm() {
       if (this.checkPriceIsNumber()) {
         this.showAlert = false;
-        this.$emit('confirm', this.newOrder);
+        const cloneOrder = Object.assign({}, this.newOrder);
+        this.resetOrder();
+        this.$emit('confirm', cloneOrder);
         this.close();
       } else {
         this.showAlert = true;

@@ -24,9 +24,9 @@
 <script>
 import OrderList from '@/components/OrderList.vue';
 import Header from '@/components/Header.vue';
-import AddOrderModal from '@/components/AddOrderModal.vue';
-import DeleteOrderModal from '@/components/DeleteOrderModal.vue';
-import EditOrderModal from '@/components/EditOrderModal.vue';
+import AddOrderModal from '@/components/Modal/AddOrderModal.vue';
+import DeleteOrderModal from '@/components/Modal/DeleteOrderModal.vue';
+import EditOrderModal from '@/components/Modal/EditOrderModal.vue';
 import orderStorage from '@/utils/orderStorage';
 
 export default {
