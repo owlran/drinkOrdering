@@ -37,24 +37,7 @@ export default {
       isDeletionModalVisible: false,
       isEditModalVisible: false,
       currentIndex: -1,
-      orders: [{
-        drink: '四季春',
-        price: 50,
-        notes: '最多二十字：備註文字備註文字備註文字備註',
-        sugar: '無糖',
-        ice: '去冰',
-        name: '王大明',
-        id: 1,
-      },
-      {
-        drink: '波霸奶茶',
-        price: 500,
-        notes: '去冰',
-        sugar: '全糖',
-        ice: '半冰',
-        name: 'eric',
-        id: 2,
-      }],
+      orders: [],
     };
   },
   components: {
