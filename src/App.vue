@@ -4,15 +4,19 @@
     <div class="app__container">
       <order-list :orders="orders"
         @editOrder="showEditModal" @deleteOrder="showDeleteModal"></order-list>
-    <add-order-modal v-show="isAddModalVisible"
-      @close="isAddModalVisible = false" @confirm="confirmToAddNewOrder"></add-order-modal>
+    <add-or-edit-order-modal v-show="isAddModalVisible"
+      :isModalVisible="isAddModalVisible"
+      :isAddingMode="true"
+      @close="isAddModalVisible = false"
+      @confirm="confirmToAddNewOrder"></add-or-edit-order-modal>
     <delete-order-modal v-show="isDeletionModalVisible"
       :isModalVisible="isDeletionModalVisible"
       @close="isDeletionModalVisible = false" @confirm="deleteOrderByIndex"></delete-order-modal>
-    <edit-order-modal v-show="isEditModalVisible"
+    <add-or-edit-order-modal v-show="isEditModalVisible"
       :isModalVisible="isEditModalVisible"
+      :isAddingMode="false"
       :order="focusedOrder"
-      @close="isEditModalVisible = false" @confirm="updateOrderByIndex"></edit-order-modal>
+      @close="isEditModalVisible = false" @confirm="updateOrderByIndex"></add-or-edit-order-modal>
     </div>
   </div>
 </template>
@@ -20,9 +24,8 @@
 <script>
 import Header from '@/components/Header';
 import OrderList from '@/components/OrderList';
-import AddOrderModal from '@/components/Modal/AddOrderModal';
 import DeleteOrderModal from '@/components/Modal/DeleteOrderModal';
-import EditOrderModal from '@/components/Modal/EditOrderModal';
+import AddOrEditModal from '@/components/Modal/AddOrEditModal';
 
 import orderStorage from '@/utils/orderStorage';
 
@@ -40,16 +43,12 @@ export default {
   components: {
     Header,
     OrderList,
-    AddOrderModal,
     DeleteOrderModal,
-    EditOrderModal,
+    AddOrEditModal,
   },
   computed: {
     totalAmount() {
-      return this.orders.reduce((total, current) => {
-        total += current.price; // eslint-disable-line no-param-reassign
-        return total;
-      }, 0);
+      return this.orders.reduce((total, currentOrder) => total + currentOrder.price, 0);
     },
     focusedOrder() {
       return this.orders[this.currentIndex] || {};
